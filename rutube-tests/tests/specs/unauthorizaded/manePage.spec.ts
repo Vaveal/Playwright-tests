@@ -1,7 +1,26 @@
 import test from '@playwright/test';
-import { ManePage } from '../../pages/MainPahe';
+import { MainPage } from '../../pages/MainPage';
 
-test('Открытие главной страницы', async ({ page}) => {
-   const mainPage = new ManePage(page);
-   await  mainPage.open();
+test('Проверка доступности элементов хедоров', async ({ page}) => {
+   const mainPage = new MainPage(page);
+   await mainPage.open();
+   await mainPage.closePopupUnauthotizaded();
+   await mainPage.closeCookiesAlert();
+   await mainPage.headeHasCorrectAriaSnapshot();
+});
+
+test('Проверка доступности табов категории', async ({ page}) => {
+   const mainPage = new MainPage(page);
+   await mainPage.open();
+   await mainPage.closePopupUnauthotizaded();
+   await mainPage.closeCookiesAlert();
+   await mainPage.categoriesTabsCorrectAriaSnapshot();
+});
+
+test('Проверка доступности элементов бокового меню', async ({ page}) => {
+   const mainPage = new MainPage(page);
+   await mainPage.open();
+   await mainPage.closePopupUnauthotizaded();
+   await mainPage.closeCookiesAlert();
+   await mainPage.menuCorrectAriaSnapshot();
 });
