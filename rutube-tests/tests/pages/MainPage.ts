@@ -14,6 +14,8 @@ private readonly headerlightModeLocator: Locator;
 private readonly headerDarkModeLocator: Locator;
 private readonly headerLoginButtonLocator: Locator;
 private readonly fornRegistration: Locator;
+private readonly menuButtonLocator: Locator;
+private readonly openMenuAriaLocator: Locator;
 
 constructor(page: Page) {
 super(page);
@@ -28,22 +30,12 @@ this.headerlightModeLocator = this.page.getByRole('button', { name: 'Перек�
 this.headerDarkModeLocator = this.page.getByRole('button', { name: 'Переключить на тёмную тему'});
 this.headerLoginButtonLocator = this.page.getByRole('button', {name: 'Вход и регистрация'});
 this.fornRegistration = this.page.locator('iframe[title="Multipass"]').contentFrame().getByRole('form');
+this.menuButtonLocator = this.page.getByRole('button', { name: 'Открыть меню навигации' });
+this.openMenuAriaLocator = this.page.getByRole('navigation');
 }
 
     async open() {
         await this.page.goto('https://rutube.ru/');
-    }
-    
-    async headerHasCorrectAriaSnapshot() {
-        await expect(this.headerLocator).toMatchAriaSnapshot({name: 'headerAriaShapshot.yml'});
-    }
-
-    async categoriesTabsCorrectAriaSnapshot() {
-        await expect(this.categoriesTabsLocator).toMatchAriaSnapshot({name: 'categoriesAriaShapshot.yml'});
-    }
-
-    async menuCorrectAriaSnapshot() {
-        await expect(this.menuLocator).toMatchAriaSnapshot({name: 'menuAriaShapshot.yml'});
     }
     
     async headerChangelightMode() {
@@ -54,6 +46,10 @@ this.fornRegistration = this.page.locator('iframe[title="Multipass"]').contentFr
         await this.headerDarkModeLocator.click();
     }
     
+    async changeModeAttributeValue(attributeValue: 'light' | 'dark') {
+        await expect(this.page.locator('html')).toHaveAttribute('data-themeid', attributeValue);
+    }
+
     async openAddPopuplist() {
         await this.headerAddButtonLocator.click();
     }
@@ -66,6 +62,22 @@ this.fornRegistration = this.page.locator('iframe[title="Multipass"]').contentFr
         await this.headerLoginButtonLocator.click();
     }
 
+    async openFillMenu() {
+        await this.menuButtonLocator.click();
+    }
+
+    async headerHasCorrectAriaSnapshot() {
+        await expect(this.headerLocator).toMatchAriaSnapshot({name: 'headerAriaShapshot.yml'});
+    }
+
+    async categoriesTabsCorrectAriaSnapshot() {
+        await expect(this.categoriesTabsLocator).toMatchAriaSnapshot({name: 'categoriesAriaShapshot.yml'});
+    }
+
+    async menuCorrectAriaSnapshot() {
+        await expect(this.menuLocator).toMatchAriaSnapshot({name: 'menuAriaShapshot.yml'});
+    }
+
     async addButtonListAriaSnapshot() {
         await expect(this.headerAddButtonListLocator).toMatchAriaSnapshot({name: 'AddButtonListShapshot.yml'});
     }
@@ -76,6 +88,10 @@ this.fornRegistration = this.page.locator('iframe[title="Multipass"]').contentFr
 
     async autorizationModalAriaSnapshot() {
         await expect(this.fornRegistration).toMatchAriaSnapshot({name: 'fornRegistrationShapshot.yml'});
+    }
+
+    async fullMenuAriaSnapshot() {
+        await expect(this.openMenuAriaLocator).toMatchAriaSnapshot({name: 'fullMenuShapshot.yml'});
     }
 
 }
