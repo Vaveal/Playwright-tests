@@ -1,0 +1,37 @@
+- text: Уведомления
+- button:
+  - img
+- list:
+  - listitem:
+    - link /Новое видео на канале НОВАЯ ЭРА \d+ часов назад/:
+      - /url: /video/971799ce583af474364eb86ad1cbae35/
+  - listitem:
+    - link "Новое видео на канале НОВАЯ ЭРА День назад":
+      - /url: /video/2ed48ed39f8747051a4868580a7f7744/
+  - listitem:
+    - link "Новое видео на канале НОВАЯ ЭРА 2 дня назад":
+      - /url: /video/d311056d915223f8db2ae158b95746bc/
+  - listitem:
+    - link "Новое видео на канале НОВАЯ ЭРА 2 дня назад":
+      - /url: /video/0b852c3b063346b86becfda2bfc4dcb6/
+  - listitem:
+    - link "Новое видео на канале Metametrica 2 дня назад":
+      - /url: /video/7d17e451eb310fda41742d5d5720654c/
+  - listitem:
+    - link "Новое видео на канале НОВАЯ ЭРА 3 дня назад":
+      - /url: /video/8e296818e8f1892cb4835a23686af99c/
+  - listitem:
+    - link "Новое видео на канале НОВАЯ ЭРА 3 дня назад":
+      - /url: /video/27e38bc6bb49096cbbb4ec27f033fc47/
+  - listitem:
+    - link "Новое видео на канале НОВАЯ ЭРА 4 дня назад":
+      - /url: /video/c159751597d4650ffa827ecfe2ee611b/
+  - listitem:
+    - link "Новое видео на канале НОВАЯ ЭРА 5 дней назад":
+      - /url: /video/395a36fc15599607ebbafb528067498c/
+  - listitem:
+    - link "Новое видео на канале НОВАЯ ЭРА 6 дней назад":
+      - /url: /video/c409da84a70525cd88a0e38dd147c23a/
+  - listitem:
+    - link "Новое видео на канале НОВАЯ ЭРА 6 дней назад":
+      - /url: /video/42f2ea97bbeee62a8c18e746ab48266e/

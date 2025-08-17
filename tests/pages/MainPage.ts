@@ -2,6 +2,9 @@ import {Page, Locator, expect} from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class MainPage extends BasePage {
+   static openFillMenu() {
+      throw new Error('Method not implemented.');
+   }
 
 private readonly headerLocator : Locator;
 private readonly categoriesTabsLocator : Locator;
@@ -21,7 +24,7 @@ constructor(page: Page) {
 super(page);
 this.headerLocator = this.page.getByRole('banner');
 this.categoriesTabsLocator = this.page.getByRole('main').getByRole('list').first();
-this.menuLocator = this.page.getByRole('navigation');
+this.menuLocator = this.page.getByRole('navigation'); 
 this.headerAddButtonLocator = this.page.getByRole('button', { name: 'Добавить'});
 this.headerNotificationButtonLocator = this.page.getByRole('button', { name: 'Уведомления'});
 this.headerNotificatiListLocator = this.page.locator('.wdp-notifications-popup-module__wrapper');
