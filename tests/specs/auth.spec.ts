@@ -21,10 +21,10 @@ test('Авторизация', async ( ) => {
     await expect(formAuthorizatin.getByRole('heading', { name: 'Вход или регистрация' })).toBeVisible();
     await formAuthorizatin.getByRole('textbox', { name: 'Введите телефон' }).fill(process.env.LOGIN!);
     await formAuthorizatin.getByRole('button', { name: 'Продолжить' }).click();
-    await expect(formAuthorizatin.getByText(`Введите пароль для профиля с почтой ${process.env.LOGIN!}`)).toBeVisible();
+    await expect(formAuthorizatin.getByText(`Введите пароль для профиля с почтой ${process.env.LOGIN}`)).toBeVisible();
     await formAuthorizatin.getByRole('textbox').fill(process.env.PASSWORD!);
     await formAuthorizatin.getByRole('button', { name: 'Войти', exact: true }).click();
-    await page.getByAltText('Иконка канала channel56877604').click();
+    await page.getByAltText(`Иконка канала ${process.env.CHANNEL}`).click();
     await page.getByRole('listitem').first().click();
     
     await page.context().storageState({ path: authFile });
