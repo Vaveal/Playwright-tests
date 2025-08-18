@@ -19,6 +19,8 @@ private readonly headerLoginButtonLocator: Locator;
 private readonly fornRegistration: Locator;
 private readonly menuButtonLocator: Locator;
 private readonly openMenuAriaLocator: Locator;
+private readonly userLogoLocator: Locator;
+private readonly headerUserMenuLocator: Locator;
 
 constructor(page: Page) {
 super(page);
@@ -35,6 +37,8 @@ this.headerLoginButtonLocator = this.page.getByRole('button', {name: 'Вход �
 this.fornRegistration = this.page.locator('iframe[title="Multipass"]').contentFrame().getByRole('form');
 this.menuButtonLocator = this.page.getByRole('button', { name: 'Открыть меню навигации' });
 this.openMenuAriaLocator = this.page.getByRole('navigation');
+this.userLogoLocator = this.page.getByAltText(`Иконка канала ${process.env.CHANNEL}`);
+this.headerUserMenuLocator = this.page.locator('section').filter({hasText: 'Профиль'}).last();
 }
 
     async open() {
@@ -47,6 +51,10 @@ this.openMenuAriaLocator = this.page.getByRole('navigation');
     
     async headerChangeDarkMode() {
         await this.headerDarkModeLocator.click();
+    }
+
+    async openHeaderUserMenu() {
+        await this.userLogoLocator.click();
     }
     
     async changeModeAttributeValue(attributeValue: 'light' | 'dark') {
@@ -70,31 +78,35 @@ this.openMenuAriaLocator = this.page.getByRole('navigation');
     }
 
     async headerHasCorrectAriaSnapshot() {
-        await expect(this.headerLocator).toMatchAriaSnapshot({name: 'headerAriaShapshot.yml'});
+        await this.checkAriaSnapshot(this.headerLocator, 'headerAriaShapshot.yml');
     }
 
     async categoriesTabsCorrectAriaSnapshot() {
-        await expect(this.categoriesTabsLocator).toMatchAriaSnapshot({name: 'categoriesAriaShapshot.yml'});
+        await this.checkAriaSnapshot(this.categoriesTabsLocator, 'categoriesAriaShapshot.yml');
     }
 
     async menuCorrectAriaSnapshot() {
-        await expect(this.menuLocator).toMatchAriaSnapshot({name: 'menuAriaShapshot.yml'});
+        await this.checkAriaSnapshot(this.menuLocator, 'menuAriaShapshot.yml');
     }
 
     async addButtonListAriaSnapshot() {
-        await expect(this.headerAddButtonListLocator).toMatchAriaSnapshot({name: 'AddButtonListShapshot.yml'});
+         await this.checkAriaSnapshot(this.headerAddButtonListLocator, 'addButtonListShapshot.yml');
     }
 
     async NotificatiListAriaSnapshot() {
-        await expect(this.headerNotificatiListLocator).toMatchAriaSnapshot({name: 'NotificatiListShapshot.yml'});
+        await this.checkAriaSnapshot(this.headerNotificatiListLocator, 'notificatiListShapshot.yml');
     }
 
     async autorizationModalAriaSnapshot() {
-        await expect(this.fornRegistration).toMatchAriaSnapshot({name: 'fornRegistrationShapshot.yml'});
+        await this.checkAriaSnapshot(this.fornRegistration, 'fornRegistrationShapshot.yml');
     }
 
     async fullMenuAriaSnapshot() {
-        await expect(this.openMenuAriaLocator).toMatchAriaSnapshot({name: 'fullMenuShapshot.yml'});
+        await this.checkAriaSnapshot(this.openMenuAriaLocator, 'fullMenuShapshot.yml');
+    }
+
+    async headerUserMenuAriaSnapshot() {
+         await this.checkAriaSnapshot(this.headerUserMenuLocator, 'headerUserMenuShapshot.yml');
     }
 
 }

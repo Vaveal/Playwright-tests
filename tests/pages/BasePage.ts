@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 export class BasePage {
     readonly page: Page
@@ -13,5 +13,9 @@ export class BasePage {
     
     async closeCookiesAlert () {
             await this.page.getByRole('complementary').getByRole('button', {name: 'Ок'}).click();
+    }
+
+    protected async checkAriaSnapshot(locator : Locator, ariaName: string) {
+            await expect(locator).toMatchAriaSnapshot({name: ariaName,});
     }
 }
