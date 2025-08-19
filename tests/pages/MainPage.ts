@@ -24,21 +24,21 @@ private readonly headerUserMenuLocator: Locator;
 
 constructor(page: Page) {
 super(page);
-this.headerLocator = this.page.getByRole('banner');
-this.categoriesTabsLocator = this.page.getByRole('main').getByRole('list').first();
-this.menuLocator = this.page.getByRole('navigation'); 
-this.headerAddButtonLocator = this.page.getByRole('button', { name: 'Добавить'});
-this.headerNotificationButtonLocator = this.page.getByRole('button', { name: 'Уведомления'});
-this.headerNotificatiListLocator = this.page.locator('.wdp-notifications-popup-module__wrapper');
-this.headerAddButtonListLocator = this.page.getByRole('list').first();
-this.headerlightModeLocator = this.page.getByRole('button', { name: 'Переключить на светлую тему'});
-this.headerDarkModeLocator = this.page.getByRole('button', { name: 'Переключить на тёмную тему'});
-this.headerLoginButtonLocator = this.page.getByRole('button', {name: 'Вход и регистрация'});
-this.fornRegistration = this.page.locator('iframe[title="Multipass"]').contentFrame().getByRole('form');
-this.menuButtonLocator = this.page.getByRole('button', { name: 'Открыть меню навигации' });
-this.openMenuAriaLocator = this.page.getByRole('navigation');
-this.userLogoLocator = this.page.getByAltText(`Иконка канала ${process.env.CHANNEL}`);
-this.headerUserMenuLocator = this.page.locator('section').filter({hasText: 'Профиль'}).last();
+    this.headerLocator = this.page.getByRole('banner');
+    this.categoriesTabsLocator = this.page.getByRole('main').getByRole('list').first();
+    this.menuLocator = this.page.getByRole('navigation'); 
+    this.headerAddButtonLocator = this.page.getByRole('button', { name: 'Добавить'});
+    this.headerNotificationButtonLocator = this.page.getByRole('button', { name: 'Уведомления'});
+    this.headerNotificatiListLocator = this.page.locator('.wdp-notifications-popup-module__wrapper');
+    this.headerAddButtonListLocator = this.page.getByRole('list').first();
+    this.headerlightModeLocator = this.page.getByRole('button', { name: 'Переключить на светлую тему'});
+    this.headerDarkModeLocator = this.page.getByRole('button', { name: 'Переключить на тёмную тему'});
+    this.headerLoginButtonLocator = this.page.getByRole('button', {name: 'Вход и регистрация'});
+    this.fornRegistration = this.page.locator('iframe[title="Multipass"]').contentFrame().getByRole('form');
+    this.menuButtonLocator = this.page.getByRole('button', { name: 'Открыть меню навигации' });
+    this.openMenuAriaLocator = this.page.getByRole('navigation');
+    this.userLogoLocator = this.page.getByAltText(`Иконка канала ${process.env.CHANNEL}`);
+    this.headerUserMenuLocator = this.page.locator('section').filter({hasText: 'Профиль'}).last();
 }
 
     async open() {

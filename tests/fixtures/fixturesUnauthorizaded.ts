@@ -1,11 +1,13 @@
 import { test as base } from '@playwright/test';
 import { MainPage } from '../pages/MainPage';
+import { SubscriptionsPage } from '../pages/SubsctiptionsPage';
 import { CategoriesPage } from '../pages/CategoriesPage';
 
 // Declare the types of your fixtures.
 type MyFixtures = {
     mainPage: MainPage;
     categoriesPage: CategoriesPage;
+    subscriptionsPage: SubscriptionsPage;
   };
 
 export const test = base.extend<MyFixtures>({
@@ -14,7 +16,7 @@ export const test = base.extend<MyFixtures>({
     const mainPage = new MainPage(page);
     await mainPage.open();
     await mainPage.closePopupUnauthotizaded();
-    await mainPage.closeCookiesAlert;
+    await mainPage.closeCookiesAlert();
     // Use the fixture value in the test.
     await use(mainPage);
 
@@ -27,6 +29,16 @@ export const test = base.extend<MyFixtures>({
     await categoriesPage.hideHeader();
 
     await use(categoriesPage);
-  },  
+  },
+  subscriptionsPage: async ({ page }, use) => {
+    // Set up the fixture.
+    const subscriptionsPage = new SubscriptionsPage(page);
+    await subscriptionsPage.open();
+    await subscriptionsPage.closePopupUnauthotizaded();
+    await subscriptionsPage.closeCookiesAlert();
+    // Use the fixture value in the test.
+    await use(subscriptionsPage);
+
+  },
 });
 export { expect } from '@playwright/test';
