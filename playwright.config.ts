@@ -32,9 +32,9 @@ export default defineConfig({
     trace: 'on-first-retry',
     proxy: process.env.CI ?
       {
-      server: process.env.PROXY_IP || '',
-      username: process.env.PROXY_LOGIN || '',
-      password: process.env.PROXY_PASSWORD || '',
+      server: process.env.PROXY_IP!,
+      username: process.env.PROXY_LOGIN!,
+      password: process.env.PROXY_PASSWORD!,
       }
       : undefined
   },
