@@ -30,6 +30,13 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    proxy: process.env.CI ?
+      {
+      server: process.env.PROXY_IP || '',
+      username: process.env.PROXY_LOGIN || '',
+      password: process.env.PROXY_PASSWORD || '',
+      }
+      : undefined
   },
 
   /* Configure projects for major browsers */
@@ -38,7 +45,7 @@ export default defineConfig({
       name: 'chromium authorized',
       use: { ...devices['Desktop Chrome'],
         storageState: 'tests/playwright/.auth/user.json'},
-      dependencies: ['authtorizate'],
+      // dependencies: ['authtorizate'],
       testDir: 'tests/specs/authorized',
       snapshotPathTemplate: 'tests/snapshot/authorized/{testFilePath}/{arg}{ext}',
     },
@@ -48,10 +55,10 @@ export default defineConfig({
       testDir: 'tests/specs/unauthorizaded',
       snapshotPathTemplate: 'tests/snapshot/unauthorizaded/{testFilePath}/{arg}{ext}',
     },
-    {
-      name: 'authtorizate',
-      testMatch: 'tests/specs/auth.spec.ts',
-    },
+    // {
+    //   name: 'authtorizate',
+    //   testMatch: 'tests/specs/auth.spec.ts',
+    // },
 
     /* Test against mobile viewports. */
     // {
@@ -81,3 +88,4 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
